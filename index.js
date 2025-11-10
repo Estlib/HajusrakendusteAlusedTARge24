@@ -18,8 +18,8 @@ app.get('/thingamabobs/:id', (req,res) => {
     {
         return res.status(404).send({error:"Object not found. Check your thingamabob id"})
     }
-}
-)
+    res.send(thingamabobs[req.params.id])
+})
 
 app.post('/thingamabobs', (req,res) => {
     if (!req.body.name || !req.body.price)
@@ -34,6 +34,24 @@ app.post('/thingamabobs', (req,res) => {
     thingamabobs.push(newThingy)
     res.status(201).location('localhost:8080/thingamabobs/'+(thingamabobs.length-1)).send(newThingy)
 })
+
+app.put('/thingamabobs/:id', (req,res) => {
+    if (typeof thingamabobs[req.params.id - 1] === 'undefined')
+    {
+        return res.status(400).send({error:"No id provided for object to be edited."})
+    }
+    let changedThingy = {
+        id: req.params.id,
+        price: req.body.price,
+        name: req.body.name
+    }
+    if (thingamabobs[changedThingy.id] == null) {
+        return res.status(404).send({error:"Object of this id not found"})
+    }
+    thingamabobs[changedThingy.id].name = changedThingy.name,
+    thingamabobs[changedThingy.id].price = changedThingy.price,    
+    res.status(201).send(changedThingy)
+} )
 
 app.delete('/thingamabobs/:id', (req,res) => {
     if (typeof thingamabobs[req.params.id - 1] === 'undefined')
