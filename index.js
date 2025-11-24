@@ -23,15 +23,15 @@ document.getElementById("app").innerHTML =
 <div id="json">
     <h1> Car properties </h1>
     <p>Brand of car: ${displayCars[0].Car.carBrand}</p>
-    <p>Brand of car: ${displayCars[0].Car.color}</p>
-    <p>Brand of car: ${displayCars[0].Car["Tinted windows"]}</p>
+    <p>Color of car: ${displayCars[0].Car.color}</p>
+    <p>Windowtype of car: ${displayCars[0].Car["Tinted windows"]}</p>
 
 </div>
 `
+getElementById();
 
 
-
-
+https://meet.google.com/uho-sojs-dtn
 app.get('/thingamabobs', (req, res) => {res.send(thingamabobs)})
 
 app.get('/thingamabobs/:id', (req,res) => {
